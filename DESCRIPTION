@@ -1,0 +1,36 @@
+Package: MarcusSantAnna2020
+Type: Package
+Title: Unconditional Event-study analysis with variation in Treatment Timing
+Version: 0.1.0
+Authors@R: c(person("Pedro H. C.", "Sant'Anna", email = "pedro.h.santanna@vanderbilt.edu",
+              role = c("aut", "cre")),
+              person("Michelle", "Marcus", email = "michelle.marcus@vanderbilt.edu",role = c("aut"))
+            )
+Description: Implements the event study estimators described in Marcus and Sant'Anna (2020),
+    'The Role of Parallel Trends in Event Study Settings: An Application to Environmental Economics', forthcoming
+    at JAERE.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Remotes: github::bcallaway11/did
+Depends:
+    R (>= 4.0)
+Imports:
+    BMisc (>= 1.4.1),
+    MASS,
+    pbapply,
+    stats,
+    ggplot2,
+    knitr,
+    utils,
+    ggpubr,
+    gridExtra,
+    plm,
+    DRDID
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
+Suggests: 
+    rmarkdown,
+    testthat (>= 2.1.0)
+Date: 2020-05-12 13:00
+Language: en-US
