@@ -4,10 +4,10 @@
 #' @description Does the heavy lifting on computing aggregated group-time
 #'  average treatment effects
 #'
-#' @inheritParams did::att_gt
-#' @inheritParams did::aggte
+#' @inheritParams att_gt
+#' @inheritParams aggte
 #'
-#' @return \code{AGGTEobj} object - check did package
+#' @return \code{did::AGGTEobj} object - check did package
 #'
 #'
 #' @export
@@ -24,7 +24,7 @@ compute_aggte_new <- function(MP, type="simple", balance.e=NULL) {
   n <- MP$n
 
   dp <- MP$DIDparams
-  first.treat.name <- dp$first.treat.name
+  first.treat.name <- dp$gname
   clustervars <- dp$clustervars
   data <- dp$data
   tname <- dp$tname

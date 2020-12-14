@@ -105,19 +105,20 @@ unc_att_gt_panel_het2 <- function(y_name,
   dp <- did::pre_process_did(yname = y_name,
                              tname = t_name,
                              idname = id_name,
-                             first.treat.name = first_treat_name,
+                             gname = first_treat_name,
                              xformla = NULL,
                              data = data,
                              panel = TRUE,
-                             control.group = comparison_group,
+                             allow_unbalanced_panel = FALSE,
+                             control_group = comparison_group,
                              weightsname = weights_name,
                              alp = alp,
                              bstrap = bstrap,
                              cband = TRUE,
                              biters = nboot,
                              clustervars = cluster_vars,
-                             estMethod = "ipw",
-                             printdetails = print_details,
+                             est_method = "ipw",
+                             print_details = print_details,
                              pl = parallel,
                              cores = cores
   )
@@ -143,7 +144,7 @@ unc_att_gt_panel_het2 <- function(y_name,
   #attgt.list_het1 <- results_het1$attgt.list
   #inffunc_het1 <- results_het1$inffunc
   # process results
-  attgt.results_het1 <- did::process_attgt(results_het1)
+  attgt.results_het1 <- process_attgt1(results_het1)
   att_het1 <- attgt.results_het1$att
   inffunc1_het1 <- attgt.results_het1$inf.func
 
@@ -155,7 +156,7 @@ unc_att_gt_panel_het2 <- function(y_name,
   #attgt.list_het0 <- results_het0$attgt.list
   #inffunc_het0 <- results_het0$inffunc
   # process results
-  attgt.results_het0 <- did::process_attgt(results_het0)
+  attgt.results_het0 <- process_attgt1(results_het0)
   att_het0 <- attgt.results_het0$att
   inffunc1_het0 <- attgt.results_het0$inf.func
 

@@ -1,7 +1,7 @@
 Package: MarcusSantAnna2020
 Type: Package
 Title: Unconditional Event-study analysis with variation in Treatment Timing
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(person("Pedro H. C.", "Sant'Anna", email = "pedro.h.santanna@vanderbilt.edu",
               role = c("aut", "cre")),
               person("Michelle", "Marcus", email = "michelle.marcus@vanderbilt.edu",role = c("aut"))
@@ -12,7 +12,7 @@ Description: Implements the event study estimators described in Marcus and Sant'
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Remotes: github::bcallaway11/did
+Remotes: github::bcallaway11/did (>= 2.0.1)
 Depends:
     R (>= 4.0)
 Imports:
@@ -21,6 +21,7 @@ Imports:
     pbapply,
     stats,
     ggplot2,
+    Matrix,
     knitr,
     utils,
     ggpubr,

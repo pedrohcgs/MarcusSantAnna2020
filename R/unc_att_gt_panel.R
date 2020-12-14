@@ -80,19 +80,20 @@ unc_att_gt_panel <- function(y_name,
   dp <- did::pre_process_did(yname = y_name,
                              tname = t_name,
                              idname = id_name,
-                             first.treat.name = first_treat_name,
+                             gname = first_treat_name,
                              xformla = NULL,
                              data = data,
                              panel = TRUE,
-                             control.group = comparison_group,
+                             allow_unbalanced_panel = FALSE,
+                             control_group = comparison_group,
                              weightsname = weights_name,
                              alp = alp,
                              bstrap = bstrap,
                              cband = TRUE,
                              biters = nboot,
                              clustervars = cluster_vars,
-                             estMethod = "ipw",
-                             printdetails = print_details,
+                             est_method = "ipw",
+                             print_details = print_details,
                              pl = parallel,
                              cores = cores
   )
@@ -111,7 +112,7 @@ unc_att_gt_panel <- function(y_name,
   #inffunc <- results$inffunc
 
   # process results
-  attgt.results <- did::process_attgt(results)
+  attgt.results <- process_attgt1(results)
   group <- attgt.results$group
   att <- attgt.results$att
   tt <- attgt.results$tt
@@ -123,6 +124,7 @@ unc_att_gt_panel <- function(y_name,
   # are clustered at the unit level
   n <- dp$n
   V <- t(inffunc1)%*%inffunc1/n
+  se <- sqrt(Matrix::diag(V)/n)
 
   # if clustering along another dimension...we require using the
   # bootstrap (in principle, could come up with analytical standard
@@ -136,8 +138,10 @@ unc_att_gt_panel <- function(y_name,
   if (bstrap) {
     bout <- did::mboot(inffunc1, DIDparams=dp)
     bres <- bout$bres
-    V <- bout$V
+    #V <- bout$V
+    se <- bout$se
   }
+
 
   #-----------------------------------------------------------------------------
   # compute confidence intervals / bands
@@ -164,6 +168,7 @@ unc_att_gt_panel <- function(y_name,
   }
 
   # Return this list
-  return(did::MP(group=group, t=tt, att=att, V=V, c=cval, inffunc=inffunc1, n=n, W=NULL, Wpval=NULL, alp = alp, DIDparams=dp))
+  return(did::MP(group=group, t=tt, att=att, V_analytical=V, se = se,
+                 c=cval, inffunc=inffunc1, n=n, W=NULL, Wpval=NULL, alp = alp, DIDparams=dp))
 
 }

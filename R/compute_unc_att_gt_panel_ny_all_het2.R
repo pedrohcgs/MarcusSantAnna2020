@@ -25,9 +25,9 @@ compute_unc_att_gt_panel_ny_all_het2 <- function(dp, het_val) {
   yname <- dp$yname
   tname <- dp$tname
   idname <- dp$idname
-  printdetails <- dp$printdetails
-  control.group <- dp$control.group
-  first.treat.name <- dp$first.treat.name
+  printdetails <- dp$print_details
+  control.group <- dp$control_group
+  first.treat.name <- dp$gname
   n  <- dp$n
   nT <- dp$nT
   nG <- dp$nG
@@ -124,7 +124,7 @@ compute_unc_att_gt_panel_ny_all_het2 <- function(dp, het_val) {
       # contains the change in the outcome over time.
       # dy is computed as latest year - earliest year. "Y" is outcome
       # in the pre period, "yt1" is outcome in the post period
-      disdat <- BMisc::panel2cs(disdat, yname, idname, tname)
+      disdat <- suppressWarnings(BMisc::panel2cs(disdat, yname, idname, tname))
 
       # drop missing factors
       disdat <- base::droplevels(disdat)

@@ -25,7 +25,7 @@
 #'  next two periods when \code{e=1} and the \code{e=2}).  This ensures that
 #'  the composition of groups does not change when event time changes.
 #'
-#' @return AGGTEobj
+#' @return did::AGGTEobj
 #' @export
 #'
 aggte_het <- function(MP, type="simple", balance.e=NULL) {
